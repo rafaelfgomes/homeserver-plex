@@ -2,12 +2,13 @@ version: "3"
 
 services:
   plex:
-    image: ${DOCKER_IMAGE}
+    image: ${PLEX_IMAGE}
     container_name: plex-service
     restart: always
     environment:
       TZ: ${TIMEZONE}
       PLEX_CLAIM: ${PLEX_TOKEN}
+      ADVERTISE_IP: http://${PLEX_IP}:32400
       PLEX_UID: 1000
       PLEX_GID: 984
     volumes:
@@ -17,7 +18,7 @@ services:
       - "/mnt/HDNAS/tvshows:/tvshows:ro"
     networks:
       server-network:
-        ipv4_address: 172.40.0.7
+        ipv4_address: ${PLEX_IP}
 
 volumes: 
   data:
