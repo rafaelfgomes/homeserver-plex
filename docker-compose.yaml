@@ -8,7 +8,7 @@ services:
     environment:
       TZ: ${TIMEZONE}
       PLEX_CLAIM: ${PLEX_TOKEN}
-      ADVERTISE_IP: http://${PLEX_IP}:32400/,https://${REMOTE_ADDRESS}/
+      ADVERTISE_IP: http://${PLEX_IP}:32400/
       PLEX_UID: 1000
       PLEX_GID: 984
     volumes:
@@ -16,15 +16,8 @@ services:
       - "transcode:/transcode"
       - "/mnt/HDNAS/movies:/movies:ro"
       - "/mnt/HDNAS/tvshows:/tvshows:ro"
-    networks:
-      server-network:
-        ipv4_address: ${PLEX_IP}
+    network_mode: "host"
 
 volumes: 
   data:
   transcode:
-
-networks:
-    server-network:
-        external: true
-        name: server-containers
