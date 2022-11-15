@@ -16,6 +16,7 @@ services:
       - "transcode:/transcode"
       - "${MOVIES_FOLDER}:/movies:ro"
       - "${TVSHOWS_FOLDER}:/tvshows:ro"
+      - "${ANIMES_FOLDER}:/animes:ro"
     network_mode: "host"
   scheduler:
     image: mcuadros/ofelia
